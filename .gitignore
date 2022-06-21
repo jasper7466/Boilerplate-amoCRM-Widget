@@ -1,0 +1,22 @@
+### Продукты работы сборщика ###
+/dist
+
+### Файлы инструментов ###
+/node_modules
+*.log
+npm-debug.log*
+
+### Специфичные файлы ОС ###
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Trash-*
+
+### Файлы редакторов ###
+*.idea
+*.sublime
+*.vscode
