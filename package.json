@@ -4,6 +4,7 @@
   "description": "amoCRM widget template project",
   "main": "./src/script.js",
   "scripts": {
+    "serve": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/jasper7466/Boilerplate-amoCRM-Widget/issues"
   },
-  "homepage": "https://github.com/jasper7466/Boilerplate-amoCRM-Widget#readme"
+  "homepage": "https://github.com/jasper7466/Boilerplate-amoCRM-Widget#readme",
+  "devDependencies": {
+    "express": "^4.18.1"
+  }
 }
