@@ -3,7 +3,7 @@ const zipper = require('zip-a-folder');
 const config = require('./config');
 
 const port = config.port;
-const content = `define(["http://localhost:${port}/"], function (widget) {return widget;});`;
+const content = `define(["http://localhost:${port}/script.js"], function (widget) {return widget;});`;
 
 console.log('Building script loader project:');
 
