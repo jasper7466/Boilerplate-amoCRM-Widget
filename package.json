@@ -1,0 +1,24 @@
+{
+  "name": "boilerplate-amocrm-widget",
+  "version": "0.0.1",
+  "description": "amoCRM widget template project",
+  "main": "./src/script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasper7466/Boilerplate-amoCRM-Widget.git"
+  },
+  "keywords": [
+    "amocrm",
+    "amo",
+    "crm"
+  ],
+  "author": "Tim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasper7466/Boilerplate-amoCRM-Widget/issues"
+  },
+  "homepage": "https://github.com/jasper7466/Boilerplate-amoCRM-Widget#readme"
+}

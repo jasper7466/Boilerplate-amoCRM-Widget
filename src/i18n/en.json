@@ -1,0 +1,29 @@
+{
+    "widget":{
+        "name":"MyWidget",
+        "short_description":"Short description",
+        "description":"Full description",
+        "tour_description":"Tour description"
+    },
+    "settings":{
+        "login":"User login",
+        "api_key":"API key",
+        "account":"Account"
+    },
+    "advanced":{
+        "title":"Settings menu item title"
+    },
+    "salesbot":{
+        "button_title":"Button title",
+        "button_caption":"Button caption",
+        "button_title_default_value":"Button title",
+        "button_caption_default_value":"Button caption",
+        "text":"Text",
+        "number":"Number",
+        "url":"URL",
+        "handler_name":"Handler name"
+    },
+    "dp":{
+        "message": "Message"
+    }
+}

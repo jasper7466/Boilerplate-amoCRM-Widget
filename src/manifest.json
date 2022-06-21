@@ -1,0 +1,102 @@
+{
+  "widget": {
+    "name": "widget.name",
+    "description": "widget.description",
+    "short_description": "widget.short_description",
+    "version": "1.0.1",
+    "interface_version": 2,
+    "init_once": true,
+    "locale": [
+      "ru",
+      "en"
+    ],
+    "installation": true,
+    "support": {
+      "link": "https://www.amocrm.com",
+      "email": "support@amocrm.com"
+    }
+  },
+  "locations": [
+    "ccard-1",
+    "clist-0",
+    "lcard-1",
+    "llist-0",
+    "settings",
+    "digital_pipeline",
+    "advanced_settings",
+    "salesbot_designer"
+  ],
+  "tour": {
+    "is_tour": true,
+    "tour_images": {
+      "ru": [
+        "/images/logo_main.png",
+        "/images/logo_main.png",
+        "/images/logo_main.png"
+      ]
+    },
+    "tour_description": "widget.tour_description"
+  },
+  "settings": {
+    "login": {
+      "name": "settings.login",
+      "type": "text",
+      "required": true
+    },
+    "api_key": {
+      "name": "settings.api_key",
+      "type": "text",
+      "required": true
+    },
+    "account": {
+      "name": "settings.account",
+      "type": "text",
+      "required": true
+    }
+  },
+  "dp": {
+    "settings": {
+      "message": {
+        "name": "dp.message",
+        "type": "text",
+        "required": true
+      }
+    },
+    "action_multiple": false,
+    "webhook_url": "https://example.com/webhook"
+  },
+  "advanced": {
+    "title": "advanced.title"
+  },
+  "salesbot_designer": {
+    "handler_code": {
+      "name": "salesbot.handler_name",
+      "settings": {
+        "button_title": {
+          "name": "salesbot.button_title",
+          "type": "text",
+          "default_value": "salesbot.button_title_default_value",
+          "manual": true
+        },
+        "button_caption": {
+          "name": "salesbot.button_caption",
+          "type": "text",
+          "default_value": "salesbot.button_caption_default_value",
+          "manual": true
+        },
+        "text": {
+          "name": "salesbot.text",
+          "type": "text"
+        },
+        "number": {
+          "name": "salesbot.number",
+          "type": "numeric"
+        },
+        "url": {
+          "name": "salesbot.url",
+          "type": "url"
+        }
+      }
+    }
+  }
+}
