@@ -6,10 +6,7 @@
     "version": "1.0.1",
     "interface_version": 2,
     "init_once": true,
-    "locale": [
-      "ru",
-      "en"
-    ],
+    "locale": ["ru", "en"],
     "installation": true,
     "support": {
       "link": "https://www.amocrm.com",

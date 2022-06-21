@@ -4,45 +4,45 @@ define([], function () {
 
     this.callbacks = {
       render: function () {
-        console.log("render");
+        console.log('render');
         return true;
       },
       init: _.bind(function () {
-        console.log("init");
+        console.log('init');
         return true;
       }, this),
       bind_actions: function () {
-        console.log("bind_actions");
+        console.log('bind_actions');
         return true;
       },
       settings: function () {
-        console.log("settings");
+        console.log('settings');
         return true;
       },
       onSave: function () {
-        alert("onSave");
+        alert('onSave');
         return true;
       },
       destroy: function () {
-        alert("onDestroy");
+        alert('onDestroy');
       },
       contacts: {
         selected: function () {
-          console.log("contacts");
+          console.log('contacts');
         },
       },
       leads: {
         selected: function () {
-          console.log("leads");
+          console.log('leads');
         },
       },
       tasks: {
         selected: function () {
-          console.log("tasks");
+          console.log('tasks');
         },
       },
       advancedSettings: _.bind(function () {
-        console.log("advancedSettings");
+        console.log('advancedSettings');
       }, self),
       onSalesbotDesignerSave: function (handler_code, params) {
         console.log(params);
