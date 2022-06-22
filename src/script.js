@@ -1,51 +1,59 @@
-define([], function () {
+define(['./handlers/handlers.js'], function (handlers) {
   var CustomWidget = function () {
-    var self = this;
+    var widget = this;
 
     this.callbacks = {
       render: function () {
-        console.log('render');
+        handlers.render.call(widget);
         return true;
       },
-      init: _.bind(function () {
-        console.log('init');
+      init: function () {
+        handlers.init.call(widget);
         return true;
-      }, this),
+      },
       bind_actions: function () {
-        console.log('bind_actions');
+        handlers.bindActions.call(widget);
         return true;
       },
       settings: function () {
-        console.log('settings');
-        return true;
+        handlers.settings.call(widget);
+      },
+      dpSettings: function () {
+        handlers.dpSettings.call(widget);
+      },
+      advancedSettings: function () {
+        handlers.advancedSettings.call(widget);
       },
       onSave: function () {
-        alert('onSave');
+        handlers.onSave.call(widget);
         return true;
-      },
-      destroy: function () {
-        alert('onDestroy');
-      },
-      contacts: {
-        selected: function () {
-          console.log('contacts');
-        },
       },
       leads: {
         selected: function () {
-          console.log('leads');
+          handlers.leadsSelected.call(widget);
         },
       },
-      tasks: {
+      contacts: {
         selected: function () {
-          console.log('tasks');
+          handlers.contactsSelected.call(widget);
         },
       },
-      advancedSettings: _.bind(function () {
-        console.log('advancedSettings');
-      }, self),
+      todo: {
+        selected: function () {
+          handlers.todoSelected.call(widget);
+        },
+      },
+      destroy: function () {
+        handlers.destroy.call(widget);
+      },
+      onSource: function () {
+        handlers.onSource.call(widget);
+      },
       onSalesbotDesignerSave: function (handler_code, params) {
-        console.log(params);
+        handlers.onSalesbotDesignerSave.call(widget, handler_code, params);
+      },
+      onAddAsSource: function (pipeline_id) {
+        handlers.onAddAsSource.call(widget, pipeline_id);
       },
     };
     return this;
