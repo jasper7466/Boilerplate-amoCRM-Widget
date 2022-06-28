@@ -1,4 +1,4 @@
-define(['./handlers/handlers.js'], function (handlers) {
+define(['./handlers/root.js'], function (handlers) {
   var CustomWidget = function () {
     var widget = this;
 
