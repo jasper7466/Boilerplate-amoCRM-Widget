@@ -8,7 +8,7 @@ export interface IWidgetCallbacks {
   settings?: voidCallback;
   dpSettings?: voidCallback;
   advancedSettings?: voidCallback;
-  onSave?: voidCallback;
+  onSave?: booleanCallback;
   leads?: {
     selected: voidCallback;
   };
