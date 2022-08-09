@@ -1,4 +1,4 @@
-import { IWidget } from '../Types/IWidget';
+import { IWidget } from '../types/IWidget';
 import { renderInPanel } from '../utils/renderInPanel.js';
 
 const render = function (this: IWidget) {

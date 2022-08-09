@@ -1,5 +1,5 @@
-import { IWidgetCallbacks } from '../Types/IWidget';
-import { IWidget } from '../Types/IWidget';
+import { IWidgetCallbacks } from '../types/IWidget';
+import { IWidget } from '../types/IWidget';
 import { handlers } from '../handlers/root.js';
 
 export class WidgetCallbacks implements IWidgetCallbacks {

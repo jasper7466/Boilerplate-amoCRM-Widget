@@ -1,4 +1,4 @@
-import { IWidget } from '../Types/IWidget';
+import { IWidget } from '../types/IWidget';
 
 const onSource = function (this: IWidget) {
   console.log('on source');

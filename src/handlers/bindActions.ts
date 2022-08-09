@@ -1,4 +1,4 @@
-import { IWidget } from '../Types/IWidget';
+import { IWidget } from '../types/IWidget';
 import { onEvent } from '../utils/onEvent.js';
 import { renderModal } from '../utils/renderModal.js';
 

@@ -1,6 +1,6 @@
-import { IWidget } from './Types/IWidget';
+import { IWidget } from './types/IWidget';
 import { WidgetCallbacks } from './modules/WidgetCallbacks.js';
-import { IAMOCRM } from './Types/AMOCRM';
+import { IAMOCRM } from './types/AMOCRM';
 
 declare global {
   interface Window {

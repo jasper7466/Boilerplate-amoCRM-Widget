@@ -1,4 +1,4 @@
-import { IWidget } from './../Types/IWidget';
+import { IWidget } from '../types/IWidget';
 import { loadTemplate } from './loadTemplate.js';
 // @ts-ignore (системный модуль, предоставляемый в среде выполнения amoCRM)
 import Modal = require('lib/components/base/modal');

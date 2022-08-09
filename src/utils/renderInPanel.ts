@@ -1,4 +1,4 @@
-import { IWidget } from '../Types/IWidget';
+import { IWidget } from '../types/IWidget';
 import { loadTemplate } from './loadTemplate.js';
 
 export const renderInPanel = function (this: IWidget, callback?: () => void) {
