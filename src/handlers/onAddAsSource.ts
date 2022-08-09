@@ -1,4 +1,4 @@
-import { IWidget } from '../types';
+import { IWidget } from '../Types/IWidget';
 
 const onAddAsSource = function (this: IWidget, pipelineId: number) {
   console.log('on add as source');

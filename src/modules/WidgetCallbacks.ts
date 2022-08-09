@@ -1,11 +1,11 @@
-import { IWidgetCallbacks } from './../types';
-import { IWidget } from './../types';
+import { IWidgetCallbacks } from '../Types/IWidget';
+import { IWidget } from '../Types/IWidget';
 import { handlers } from '../handlers/root.js';
 
 export class WidgetCallbacks implements IWidgetCallbacks {
   widget: IWidget;
 
-  constructor(widget: any) {
+  constructor(widget: IWidget) {
     this.widget = widget;
   }
 

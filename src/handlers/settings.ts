@@ -1,4 +1,4 @@
-import { IWidget } from '../types';
+import { IWidget } from '../Types/IWidget';
 
 const settings = function (this: IWidget) {
   console.log('settings');

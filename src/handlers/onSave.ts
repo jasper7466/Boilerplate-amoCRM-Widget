@@ -1,4 +1,4 @@
-import { IWidget } from '../types';
+import { IWidget } from '../Types/IWidget';
 
 const onSave = function (this: IWidget) {
   console.log('on save');
