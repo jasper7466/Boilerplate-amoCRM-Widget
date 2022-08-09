@@ -1,10 +1,9 @@
 const fse = require('fs-extra');
 const zipper = require('zip-a-folder');
-// const { series } = require('async');
 const { execSync } = require('child_process');
 
 const config = require('./config');
-const loaderCode = `define(["http://localhost:${config.port}/script.js"], function (widget) {return widget;});`;
+const loaderCode = `define(['http://localhost:${config.port}/script.js', 'jquery', 'lib/components/base/modal'], function (widget, $, Modal) {return widget;});`;
 
 const log = function (message, newLine = false) {
   const postfix = newLine ? '\n' : ' ';
@@ -32,7 +31,7 @@ const compileTypeScript = function () {
 const copyStatic = function () {
   log('Copying static files...');
   fse.copySync(config.staticPath, config.distWidgetPath, {
-    overwrite: false,
+    overwrite: true,
     errorOnExist: true,
   });
   log('Done', true);
