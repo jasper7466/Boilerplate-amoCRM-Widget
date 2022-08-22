@@ -1,4 +1,7 @@
 import { IWidget } from '../types/IWidget';
+import { config } from '../config.js';
+
+const { isDevMode, port } = config;
 
 export const loadTemplate = function (
   this: IWidget,
@@ -13,7 +16,10 @@ export const loadTemplate = function (
   data.meta = { filename };
 
   // Для режима разработки: стили и шаблоны будут подтягиваться с локального сервера
-  data.settings.path = 'http://localhost:4000';
+  if (isDevMode) {
+    data.settings.path = `http://localhost:${port}`;
+    data.isDevMode = true;
+  }
 
   return this.render({
     href: `/templates/${filename}/${filename}.twig`,

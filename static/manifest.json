@@ -38,18 +38,8 @@
     "tour_description": "widget.tour_description"
   },
   "settings": {
-    "login": {
-      "name": "settings.login",
-      "type": "text",
-      "required": true
-    },
-    "api_key": {
-      "name": "settings.api_key",
-      "type": "text",
-      "required": true
-    },
-    "account": {
-      "name": "settings.account",
+    "x_api_key": {
+      "name": "settings.x_api_key",
       "type": "text",
       "required": true
     }

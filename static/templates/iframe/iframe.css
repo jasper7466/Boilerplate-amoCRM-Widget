@@ -1,9 +1,12 @@
 .custom-widget__iframe-modal .modal-body {
-  width: 85vw !important;
-  height: 90vh !important;
   padding: 0px;
+  width: fit-content;
+  height: fit-content;
 }
 
 .custom-widget__iframe {
-  height: 100%;
+  display: block;
+  box-sizing: border-box;
+  height: 90vh;
+  width: 85vw;
 }
