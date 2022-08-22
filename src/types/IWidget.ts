@@ -1,3 +1,5 @@
+import { PageCode } from './AMOCRM';
+
 type booleanCallback = () => boolean;
 type voidCallback = () => void;
 
@@ -28,13 +30,54 @@ type template = {
   render: (data: {}) => string;
 };
 
+type location =
+  | 'lcard'
+  | 'cucard'
+  | 'ccard'
+  | 'comcard'
+  | 'llist'
+  | 'culist'
+  | 'clist'
+  | 'tlist'
+  | 'tline'
+  | 'tcalendar'
+  | 'settings'
+  | 'advanced_settings'
+  | 'card_sdk'
+  | 'catalogs'
+  | 'digital_pipeline'
+  | 'lead_sources'
+  | 'whatsapp_modal';
+
+export interface IWidgetSettings {
+  active: 'S' | 'N' | 'Y';
+  category_code?: 'own_integrations' | '';
+  id: number;
+  images_path: string;
+  oauth_client_uuid: string;
+  path: string;
+  status: 'not_configured' | 'installed';
+  support: any[];
+  version: string;
+  widget_active: 'N' | 'Y';
+  widget_code: string;
+}
+
+export interface ISystem {
+  amohash: string;
+  amouser: string;
+  amouser_id: number;
+  area: location;
+  displayed_count: number;
+  displayed_count_by_area: { [key in PageCode]: number };
+  domain: string;
+  server: string;
+  subdomain: string;
+}
+
 export interface IWidget {
   callbacks: IWidgetCallbacks;
-  params: {
-    path: string;
-    version: string;
-    widget_code: string;
-  };
+  params: IWidgetSettings;
   render: (
     options: {
       data?: string;
@@ -64,5 +107,6 @@ export interface IWidget {
       name: string;
     },
   ) => any;
-  get_settings(): {};
+  get_settings(): IWidgetSettings;
+  system(): ISystem;
 }

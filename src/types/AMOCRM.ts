@@ -3,7 +3,7 @@ import * as Backbone from 'backbone';
 
 type entity = 'leads' | 'customers';
 
-type area =
+export type PageCode =
   | 'dashboard'
   | 'leads'
   | 'leads-trash'
@@ -36,13 +36,17 @@ type area =
   | 'companies_card'
   | 'customers_card';
 
-type constants =
-  | 'user'
-  | 'user_rights'
-  | 'account'
-  | 'managers'
-  | 'groups'
-  | 'task_types';
+export type constants = {
+  user: {};
+  user_rights: {
+    is_admin: boolean;
+    is_free_user: boolean;
+  };
+  account: {};
+  managers: {};
+  groups: {};
+  task_types: {};
+};
 
 type listItem = {
   id: number;
@@ -85,7 +89,7 @@ export interface IAMOCRM {
   /**
    * Метод вернет код текущей страницы.
    */
-  getWidgetsArea(): area;
+  getWidgetsArea(): PageCode;
   /**
    * Метод вернет значение константы, переданной в key (если значение value не было передано)
    * или установит в значение константы value.
@@ -93,7 +97,10 @@ export interface IAMOCRM {
    * @param key наименование константы
    * @param value новое значение константы
    */
-  constant(key: constants, value?: any): any;
+  constant<K extends keyof constants>(
+    key: K,
+    value?: constants[K],
+  ): constants[K];
 
   data: {
     /**
