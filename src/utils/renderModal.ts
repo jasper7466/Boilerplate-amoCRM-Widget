@@ -8,7 +8,6 @@ export const renderModal = function (this: IWidget): void {
   loadTemplate.call(this, 'iframe', {}, function (html) {
     new Modal({
       class_name: 'custom-widget__iframe-modal',
-      can_centrify: true,
       init: function ($modalBody: typeof $) {
         this.$modalBody = $modalBody as typeof $;
         this.$modalBody

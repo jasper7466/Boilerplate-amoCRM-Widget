@@ -1,12 +1,15 @@
 .custom-widget__iframe-modal .modal-body {
-  padding: 0px;
-  width: fit-content;
-  height: fit-content;
+  --width: 85%;
+  --height: 90%;
+  width: var(--width);
+  height: var(--height);
+  padding: 0;
+  left: calc((100% - var(--width)) / 2);
+  top: calc((100% - var(--height)) / 2);
+  margin: 0px !important;
 }
 
 .custom-widget__iframe {
-  display: block;
-  box-sizing: border-box;
-  height: 90vh;
-  width: 85vw;
+  width: 100%;
+  height: 100%;
 }
