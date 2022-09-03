@@ -1,7 +1,7 @@
 import { EventBus } from './EventBus.js';
 import { indexed } from '../types/common';
 
-export class PostMessageTransport<Subjects> {
+export class PostMessageTransport<Actions> {
   protected eventBus: EventBus;
 
   constructor(
@@ -13,22 +13,22 @@ export class PostMessageTransport<Subjects> {
     window.addEventListener('message', this.messageHandler.bind(this));
   }
 
-  subscribe(subject: string, callback: (payload: indexed<any>) => void): this {
-    this.eventBus.subscribe(subject, callback);
+  subscribe(action: string, callback: (payload: indexed<any>) => void): this {
+    this.eventBus.subscribe(action, callback);
     return this;
   }
 
-  unsubscribe(subject: string, callback: (payload: any) => void): this {
-    this.eventBus.unsubscribe(subject, callback);
+  unsubscribe(action: string, callback: (payload: any) => void): this {
+    this.eventBus.unsubscribe(action, callback);
     return this;
   }
 
-  postMessage<K extends keyof Subjects>(
-    subject: K,
-    payload: Subjects[K],
+  postMessage<K extends keyof Actions>(
+    action: K,
+    payload: Actions[K],
   ): this | never {
     const iFrame = this.getFrame();
-    iFrame.contentWindow?.postMessage({ subject, payload }, this.targetOrigin);
+    iFrame.contentWindow?.postMessage({ action, payload }, this.targetOrigin);
     return this;
   }
 
@@ -37,16 +37,16 @@ export class PostMessageTransport<Subjects> {
       return;
     }
 
-    if (!('subject' in event.data)) {
+    if (!('action' in event.data)) {
       if (this.isStrictMode) {
-        this.raiseError('no "subject" field in incoming message');
+        this.raiseError('no "action" field in incoming message');
       }
       return;
     }
 
-    const { subject, payload } = event.data;
+    const { action, payload } = event.data;
 
-    this.eventBus.emit(subject, payload);
+    this.eventBus.emit(action, payload);
   }
 
   protected raiseError(errorMessage: string): never {

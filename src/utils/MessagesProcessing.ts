@@ -10,6 +10,8 @@ type OutboxMessages = {
     constants: {
       user_rights: constants['user_rights'];
     };
+    isCard: boolean;
+    cardId: number | false;
   };
 };
 
@@ -22,6 +24,9 @@ const getCrmContextMessageHandler = function (this: IWidget) {
     constants: {
       user_rights: window.AMOCRM.constant('user_rights'),
     },
+    isCard: window.AMOCRM.isCard() && window.AMOCRM.getBaseEntity() === 'leads',
+    cardId:
+      window.AMOCRM.data.current_card && window.AMOCRM.data.current_card.id,
   });
 };
 
