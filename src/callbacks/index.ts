@@ -13,7 +13,7 @@ import { onSource } from './onSource.js';
 import { onSalesbotDesignerSave } from './onSalesbotDesignerSave.js';
 import { onAddAsSource } from './onAddAsSource.js';
 
-export const handlers = {
+export const callbacks = {
   render,
   init,
   bindActions,

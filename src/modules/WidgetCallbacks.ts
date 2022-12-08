@@ -1,6 +1,6 @@
+import { callbacks } from './../callbacks/index.js';
 import { IWidgetCallbacks } from '../types/IWidget';
 import { IWidget } from '../types/IWidget';
-import { handlers } from '../handlers/root.js';
 
 export class WidgetCallbacks implements IWidgetCallbacks {
   widget: IWidget;
@@ -10,63 +10,63 @@ export class WidgetCallbacks implements IWidgetCallbacks {
   }
 
   render() {
-    handlers.render.call(this.widget);
+    callbacks.render.call(this.widget);
     return true;
   }
 
   init() {
-    handlers.init.call(this.widget);
+    callbacks.init.call(this.widget);
     return true;
   }
 
   bind_actions() {
-    handlers.bindActions.call(this.widget);
+    callbacks.bindActions.call(this.widget);
     return true;
   }
 
   settings() {
-    handlers.settings.call(this.widget);
+    callbacks.settings.call(this.widget);
   }
 
   dpSettings() {
-    handlers.dpSettings.call(this.widget);
+    callbacks.dpSettings.call(this.widget);
   }
 
   advancedSettings() {
-    handlers.advancedSettings.call(this.widget);
+    callbacks.advancedSettings.call(this.widget);
   }
 
   onSave() {
-    handlers.onSave.call(this.widget);
+    callbacks.onSave.call(this.widget);
     return true;
   }
 
   destroy() {
-    handlers.destroy.call(this.widget);
+    callbacks.destroy.call(this.widget);
   }
 
   onSource() {
-    handlers.onSource.call(this.widget);
+    callbacks.onSource.call(this.widget);
   }
 
   onSalesbotDesignerSave(handlerCode: any, params: any) {
-    handlers.onSalesbotDesignerSave.call(this.widget, handlerCode, params);
+    callbacks.onSalesbotDesignerSave.call(this.widget, handlerCode, params);
   }
 
   onAddAsSource(pipeline_id: any) {
-    handlers.onAddAsSource.call(this.widget, pipeline_id);
+    callbacks.onAddAsSource.call(this.widget, pipeline_id);
   }
 
   private leadsSelected() {
-    handlers.leadsSelected.call(this.widget);
+    callbacks.leadsSelected.call(this.widget);
   }
 
   private contactsSelected() {
-    handlers.contactsSelected.call(this.widget);
+    callbacks.contactsSelected.call(this.widget);
   }
 
   private todoSelected() {
-    handlers.todoSelected.call(this.widget);
+    callbacks.todoSelected.call(this.widget);
   }
 
   leads = {
