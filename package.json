@@ -12,12 +12,12 @@
     }
   },
   "scripts": {
-    "serve": "node server.js",
-    "copy-static": "node copy-static.js",
-    "start": "concurrently \"tsc --watch\" \"node server.js\" \"npm-watch copy-static\"",
-    "build-loader": "node build-loader.js",
-    "build-develop": "node build-develop.js",
-    "build-prod": "node build-prod.js",
+    "serve": "node ./scripts/server.js",
+    "copy-static": "node ./scripts/copy-static.js",
+    "start": "concurrently \"tsc --watch\" \"node ./scripts/server.js\" \"npm-watch copy-static\"",
+    "build-loader": "node ./scripts/build-loader.js",
+    "build-develop": "node ./scripts/build-develop.js",
+    "build-prod": "node ./scripts/build-prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
