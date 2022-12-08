@@ -2,6 +2,7 @@ import { IWidgetSettings, ISystem } from '../types/IWidget';
 import { IWidget } from '../types/IWidget';
 import { constants } from '../types/AMOCRM';
 import { PostMessageTransport } from '../modules/PostMessageTransport.js';
+import { config } from '../config.js';
 
 type OutboxMessages = {
   getCrmContextResponse: {
@@ -15,7 +16,10 @@ type OutboxMessages = {
   };
 };
 
-const postMessageTransport = new PostMessageTransport<OutboxMessages>('#test');
+const postMessageTransport = new PostMessageTransport<OutboxMessages>(
+  '#test',
+  config.iframeURL,
+);
 
 const getCrmContextMessageHandler = function (this: IWidget) {
   postMessageTransport.postMessage('getCrmContextResponse', {

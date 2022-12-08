@@ -1,5 +1,6 @@
 import { EventBus } from './EventBus.js';
 import { indexed } from '../types/common';
+import { isObject } from '../utils/isObject.js';
 
 export class PostMessageTransport<Actions> {
   protected eventBus: EventBus;
@@ -37,9 +38,9 @@ export class PostMessageTransport<Actions> {
       return;
     }
 
-    if (!('action' in event.data)) {
+    if (isObject(event.data) && !('action' in event.data)) {
       if (this.isStrictMode) {
-        this.raiseError('no "action" field in incoming message');
+        this.raiseError('Invalid incoming post-message data');
       }
       return;
     }
