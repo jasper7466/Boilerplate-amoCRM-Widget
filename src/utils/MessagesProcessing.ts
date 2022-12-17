@@ -17,7 +17,7 @@ type OutboxMessages = {
 };
 
 const postMessageTransport = new PostMessageTransport<OutboxMessages>(
-  '#test',
+  '#main-iframe',
   config.iframeURL,
 );
 

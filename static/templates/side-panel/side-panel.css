@@ -1,8 +1,8 @@
-.custom-widget__panel {
+.custom-widget__side-panel {
   background-color: #339dc8;
 }
 
-.custom-widget__panel ~ div {
+.custom-widget__side-panel ~ div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +10,7 @@
   background-color: #c1e9fb;
 }
 
-.custom-widget__open-button {
+.side-panel__open-button {
   background-color: #50add3;
   padding: 5px;
   width: 100%;
@@ -20,10 +20,10 @@
   font-weight: 600;
 }
 
-.custom-widget__open-button:hover {
+.side-panel__open-button:hover {
   opacity: 0.8;
 }
 
-.custom-widget__open-button:active {
+.side-panel__open-button:active {
   opacity: 0.6;
 }

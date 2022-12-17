@@ -6,7 +6,7 @@ export class PostMessageTransport<Actions> {
   protected eventBus: EventBus;
 
   constructor(
-    protected iFrameId: string,
+    protected iFrameSelector: string,
     protected targetOrigin: string = '*',
     protected isStrictMode = false,
   ) {
@@ -52,12 +52,14 @@ export class PostMessageTransport<Actions> {
 
   protected raiseError(errorMessage: string): never {
     throw new Error(
-      `${this.constructor.name}, id: "${this.iFrameId}": ${errorMessage}`,
+      `${this.constructor.name}, id: "${this.iFrameSelector}": ${errorMessage}`,
     );
   }
 
   protected getFrame(): HTMLIFrameElement | never {
-    const iFrame = document.querySelector(this.iFrameId) as HTMLIFrameElement;
+    const iFrame = document.querySelector(
+      this.iFrameSelector,
+    ) as HTMLIFrameElement;
 
     if (!iFrame) {
       this.raiseError('iframe element not found');

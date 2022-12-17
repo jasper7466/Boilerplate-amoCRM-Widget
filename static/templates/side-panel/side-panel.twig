@@ -1,9 +1,5 @@
-<link 
-  type="text/css"
-  rel="stylesheet"
-  href="{{ settings.path }}/templates/{{ meta.filename }}/{{ meta.filename }}.css?v={{ settings.version }}"
->
+<link type="text/css" rel="stylesheet" href="{{ settings.path }}/templates/{{ meta.filename }}/{{ meta.filename }}.css?v={{ settings.version }}">
 
-<div class="custom-widget custom-widget__side-panel">
-  <button class="custom-widget__open-button">Открыть виджет</button>
+<div class="side-panel__content">
+	<button class="side-panel__open-button {{settings.widget_code}}">Открыть виджет</button>
 </div>
