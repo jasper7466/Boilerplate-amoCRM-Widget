@@ -9,12 +9,20 @@
         "static"
       ],
       "extensions": "twig,css"
+    },
+    "append-extensions": {
+      "patterns": [
+        "dist"
+      ],
+      "extensions": "js",
+      "delay": 1000
     }
   },
   "scripts": {
     "serve": "node ./scripts/server.js",
     "copy-static": "node ./scripts/copy-static.js",
-    "start": "concurrently \"tsc --watch\" \"node ./scripts/server.js\" \"npm-watch copy-static\"",
+    "append-extensions": "node ./scripts/append-extensions.js",
+    "start": "concurrently \"tsc --watch\" \"node ./scripts/server.js\" \"npm-watch copy-static\" \"npm-watch append-extensions\"",
     "build-loader": "node ./scripts/build-loader.js",
     "build-develop": "node ./scripts/build-develop.js",
     "build-prod": "node ./scripts/build-prod.js",
@@ -41,6 +49,7 @@
     "concurrently": "^7.3.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+    "filehound": "^1.17.6",
     "fs-extra": "^10.1.0",
     "npm-watch": "^0.11.0",
     "typescript": "^4.7.4",

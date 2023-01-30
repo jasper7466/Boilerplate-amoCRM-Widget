@@ -1,5 +1,8 @@
+'use strict';
+
 const fse = require('fs-extra');
 const zipper = require('zip-a-folder');
+const FileHound = require('filehound');
 const { execSync } = require('child_process');
 
 const config = require('./config');
@@ -54,6 +57,51 @@ const zip = function () {
   log('Done', true);
 };
 
+const appendImportsExtensions = function () {
+  log('Appending imports extensions...');
+
+  const silentMode = true;
+  const importsRegex = /(?<=(?:^define\(\[[^\]]*))"((?:\.{1,2}\/)+[^."]+?)"/gim;
+  const files = FileHound.create()
+    .paths('../')
+    .discard('node_modules')
+    .discard('scripts')
+    .ext('js')
+    .find();
+
+  files.then((filePaths) => {
+    filePaths.forEach((filepath) => {
+      fse.readFile(filepath, 'utf8', (err, data) => {
+        if (!data.match(importsRegex)) {
+          return;
+        }
+
+        let newData = data.replace(importsRegex, '"$1.js"');
+
+        if (err) {
+          throw err;
+        }
+
+        if (!silentMode) {
+          console.log(`writing to ${filepath}`);
+        }
+
+        fse.writeFile(filepath, newData, function (err) {
+          if (err) {
+            throw err;
+          }
+
+          if (!silentMode) {
+            console.log(`complete: ${filepath}`);
+          }
+        });
+      });
+    });
+  });
+
+  log('Done', true);
+};
+
 module.exports = {
   log,
   clean,
@@ -61,4 +109,5 @@ module.exports = {
   makeLoaderScript,
   compileTypeScript,
   zip,
+  appendImportsExtensions,
 };
