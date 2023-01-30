@@ -57,11 +57,7 @@ const zip = function () {
   log('Done', true);
 };
 
-const appendImportsExtensions = function () {
-  log('Appending imports extensions...');
-
-  const silentMode = true;
-  const importsRegex = /(?<=(?:^define\(\[[^\]]*))"((?:\.{1,2}\/)+[^."]+?)"/gim;
+const findJsAndReplace = function (pattern, replacement) {
   const files = FileHound.create()
     .paths('../')
     .discard('node_modules')
@@ -72,32 +68,40 @@ const appendImportsExtensions = function () {
   files.then((filePaths) => {
     filePaths.forEach((filepath) => {
       fse.readFile(filepath, 'utf8', (err, data) => {
-        if (!data.match(importsRegex)) {
-          return;
-        }
-
-        let newData = data.replace(importsRegex, '"$1.js"');
-
         if (err) {
           throw err;
         }
 
-        if (!silentMode) {
-          console.log(`writing to ${filepath}`);
+        if (!data.match(pattern)) {
+          return;
         }
 
-        fse.writeFile(filepath, newData, function (err) {
+        let newData = data.replace(pattern, replacement);
+
+        fse.writeFileSync(filepath, newData, function (err) {
           if (err) {
             throw err;
-          }
-
-          if (!silentMode) {
-            console.log(`complete: ${filepath}`);
           }
         });
       });
     });
   });
+};
+
+const appendImportsExtensions = function () {
+  log('Appending imports extensions...');
+
+  const pattern = /(?<=(?:^define\(\[[^\]]*))"((?:\.{1,2}\/)+[^."]+?)"/gim;
+  findJsAndReplace(pattern, '"$1.js"');
+
+  log('Done', true);
+};
+
+const removeConsoleLogs = function () {
+  log('Removing "console.log()"...');
+
+  const pattern = /\n?\s*console\.log\(.*\);$/gim;
+  findJsAndReplace(pattern, '');
 
   log('Done', true);
 };
@@ -110,4 +114,5 @@ module.exports = {
   compileTypeScript,
   zip,
   appendImportsExtensions,
+  removeConsoleLogs,
 };

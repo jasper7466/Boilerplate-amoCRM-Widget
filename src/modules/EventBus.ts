@@ -26,7 +26,7 @@ export class EventBus implements IEventBus {
   unsubscribe(event: string, callback: Callback) {
     this.checkEventExistence(event);
     this.listeners[event] = this.listeners[event].filter(
-      (listener) => listener !== callback,
+      (listener) => listener !== callback
     );
     this.logger(`Event unsubscription (${event})`);
   }
@@ -46,7 +46,9 @@ export class EventBus implements IEventBus {
   }
 
   protected logger(msg: string) {
-    if (this.debugMode) console.log(`${this.constructor.name}: ${msg}`);
+    if (this.debugMode) {
+      console.log(`${this.constructor.name}: ${msg}`);
+    }
   }
 
   protected checkEventExistence(event: string): boolean | never {

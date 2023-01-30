@@ -6,6 +6,7 @@ utils.clean();
 utils.copyStatic();
 utils.compileTypeScript();
 utils.appendImportsExtensions();
+utils.removeConsoleLogs();
 utils.zip();
 
 console.log('Finished!');
