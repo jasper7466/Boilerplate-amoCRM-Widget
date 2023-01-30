@@ -1,5 +1,5 @@
 import { IWidget } from '../types/IWidget';
-import { renderInPanel } from '../utils/renderInPanel.js';
+import { renderInPanel } from '../utils/renderInPanel';
 
 const render = function (this: IWidget) {
   console.log('render');

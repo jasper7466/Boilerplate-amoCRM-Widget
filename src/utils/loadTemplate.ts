@@ -1,5 +1,5 @@
 import { IWidget } from '../types/IWidget';
-import { config } from '../config.js';
+import { config } from '../config';
 
 const { isDevMode, port } = config;
 
@@ -7,7 +7,7 @@ export const loadTemplate = function (
   this: IWidget,
   filename: string,
   data: { [key: string]: any },
-  callback?: (html: string) => void,
+  callback?: (html: string) => void
 ) {
   data = typeof data == 'object' ? data : {};
 

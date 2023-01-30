@@ -1,5 +1,5 @@
 import { IWidget } from '../types/IWidget';
-import { renderSettings } from '../utils/renderSettings.js';
+import { renderSettings } from '../utils/renderSettings';
 
 const settings = function (this: IWidget) {
   console.log('settings');

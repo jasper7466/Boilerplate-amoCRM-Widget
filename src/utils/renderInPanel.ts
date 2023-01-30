@@ -1,5 +1,5 @@
 import { IWidget } from '../types/IWidget';
-import { loadTemplate } from './loadTemplate.js';
+import { loadTemplate } from './loadTemplate';
 
 export const renderInPanel = function (this: IWidget, callback?: () => void) {
   loadTemplate.call(this, 'side-panel', {}, (html) => {

@@ -1,5 +1,5 @@
 import { IWidget } from './types/IWidget';
-import { WidgetCallbacks } from './modules/WidgetCallbacks.js';
+import { WidgetCallbacks } from './modules/WidgetCallbacks';
 import { IAMOCRM } from './types/AMOCRM';
 
 declare global {

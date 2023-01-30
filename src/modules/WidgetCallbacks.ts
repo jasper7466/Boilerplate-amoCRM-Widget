@@ -1,4 +1,4 @@
-import { callbacks } from './../callbacks/index.js';
+import { callbacks } from './../callbacks/index';
 import { IWidgetCallbacks } from '../types/IWidget';
 import { IWidget } from '../types/IWidget';
 

@@ -1,17 +1,17 @@
-import { render } from './render.js';
-import { init } from './init.js';
-import { bindActions } from './bindActions.js';
-import { settings } from './settings.js';
-import { dpSettings } from './dpSettings.js';
-import { advancedSettings } from './advancedSettings.js';
-import { onSave } from './onSave.js';
-import { leadsSelected } from './leadsSelected.js';
-import { contactsSelected } from './contactsSelected.js';
-import { todoSelected } from './todoSelected.js';
-import { destroy } from './destroy.js';
-import { onSource } from './onSource.js';
-import { onSalesbotDesignerSave } from './onSalesbotDesignerSave.js';
-import { onAddAsSource } from './onAddAsSource.js';
+import { render } from './render';
+import { init } from './init';
+import { bindActions } from './bindActions';
+import { settings } from './settings';
+import { dpSettings } from './dpSettings';
+import { advancedSettings } from './advancedSettings';
+import { onSave } from './onSave';
+import { leadsSelected } from './leadsSelected';
+import { contactsSelected } from './contactsSelected';
+import { todoSelected } from './todoSelected';
+import { destroy } from './destroy';
+import { onSource } from './onSource';
+import { onSalesbotDesignerSave } from './onSalesbotDesignerSave';
+import { onAddAsSource } from './onAddAsSource';
 
 export const callbacks = {
   render,

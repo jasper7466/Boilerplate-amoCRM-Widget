@@ -1,8 +1,8 @@
 import { IWidgetSettings, ISystem } from '../types/IWidget';
 import { IWidget } from '../types/IWidget';
 import { constants } from '../types/AMOCRM';
-import { PostMessageTransport } from '../modules/PostMessageTransport.js';
-import { config } from '../config.js';
+import { PostMessageTransport } from '../modules/PostMessageTransport';
+import { config } from '../config';
 
 type OutboxMessages = {
   getCrmContextResponse: {
@@ -18,7 +18,7 @@ type OutboxMessages = {
 
 const postMessageTransport = new PostMessageTransport<OutboxMessages>(
   '#main-iframe',
-  config.iframeURL,
+  config.iframeURL
 );
 
 const getCrmContextMessageHandler = function (this: IWidget) {
@@ -37,6 +37,6 @@ const getCrmContextMessageHandler = function (this: IWidget) {
 export const bindAndSubscribeInboxHandlers = (context: IWidget) => {
   postMessageTransport.subscribe(
     'getCrmContextRequest',
-    getCrmContextMessageHandler.bind(context),
+    getCrmContextMessageHandler.bind(context)
   );
 };

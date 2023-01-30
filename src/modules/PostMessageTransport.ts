@@ -1,6 +1,6 @@
-import { EventBus } from './EventBus.js';
+import { EventBus } from './EventBus';
 import { indexed } from '../types/common';
-import { isObject } from '../utils/isObject.js';
+import { isObject } from '../utils/isObject';
 
 export class PostMessageTransport<Actions> {
   protected eventBus: EventBus;
@@ -8,7 +8,7 @@ export class PostMessageTransport<Actions> {
   constructor(
     protected iFrameSelector: string,
     protected targetOrigin: string = '*',
-    protected isStrictMode = false,
+    protected isStrictMode = false
   ) {
     this.eventBus = new EventBus(isStrictMode);
     window.addEventListener('message', this.messageHandler.bind(this));
@@ -26,7 +26,7 @@ export class PostMessageTransport<Actions> {
 
   postMessage<K extends keyof Actions>(
     action: K,
-    payload: Actions[K],
+    payload: Actions[K]
   ): this | never {
     const iFrame = this.getFrame();
     iFrame.contentWindow?.postMessage({ action, payload }, this.targetOrigin);
@@ -52,13 +52,13 @@ export class PostMessageTransport<Actions> {
 
   protected raiseError(errorMessage: string): never {
     throw new Error(
-      `${this.constructor.name}, id: "${this.iFrameSelector}": ${errorMessage}`,
+      `${this.constructor.name}, id: "${this.iFrameSelector}": ${errorMessage}`
     );
   }
 
   protected getFrame(): HTMLIFrameElement | never {
     const iFrame = document.querySelector(
-      this.iFrameSelector,
+      this.iFrameSelector
     ) as HTMLIFrameElement;
 
     if (!iFrame) {

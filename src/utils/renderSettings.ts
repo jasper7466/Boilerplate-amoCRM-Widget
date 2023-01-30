@@ -1,6 +1,6 @@
-import { config } from './../config.js';
+import { config } from './../config';
 import { IWidget } from '../types/IWidget';
-import { loadTemplate } from './loadTemplate.js';
+import { loadTemplate } from './loadTemplate';
 // @ts-ignore (системный модуль, предоставляемый в среде выполнения amoCRM)
 import Modal = require('lib/components/base/modal');
 import $ from 'jquery';
@@ -17,6 +17,6 @@ export const renderSettings = function (this: IWidget): void {
         .find('.widget_settings_block')
         .first()
         .append(html);
-    },
+    }
   );
 };
