@@ -9,75 +9,43 @@ export class WidgetCallbacks implements IWidgetCallbacks {
     this.widget = widget;
   }
 
-  render() {
+  public render() {
     callbacks.render.call(this.widget);
     return true;
   }
 
-  init() {
+  public init() {
     callbacks.init.call(this.widget);
     return true;
   }
 
-  bind_actions() {
+  public bind_actions() {
     callbacks.bindActions.call(this.widget);
     return true;
   }
 
-  settings() {
-    callbacks.settings.call(this.widget);
-  }
-
-  dpSettings() {
-    callbacks.dpSettings.call(this.widget);
-  }
-
-  advancedSettings() {
-    callbacks.advancedSettings.call(this.widget);
-  }
-
-  onSave() {
+  public onSave() {
     callbacks.onSave.call(this.widget);
     return true;
   }
 
-  destroy() {
-    callbacks.destroy.call(this.widget);
-  }
-
-  onSource() {
-    callbacks.onSource.call(this.widget);
-  }
-
-  onSalesbotDesignerSave(handlerCode: any, params: any) {
-    callbacks.onSalesbotDesignerSave.call(this.widget, handlerCode, params);
-  }
-
-  onAddAsSource(pipeline_id: any) {
-    callbacks.onAddAsSource.call(this.widget, pipeline_id);
-  }
-
-  private leadsSelected() {
-    callbacks.leadsSelected.call(this.widget);
-  }
-
-  private contactsSelected() {
-    callbacks.contactsSelected.call(this.widget);
-  }
-
-  private todoSelected() {
-    callbacks.todoSelected.call(this.widget);
-  }
+  public settings = callbacks.settings;
+  public dpSettings = callbacks.dpSettings;
+  public advancedSettings = callbacks.advancedSettings;
+  public destroy = callbacks.destroy;
+  public onSource = callbacks.onSource;
+  public onSalesbotDesignerSave = callbacks.onSalesbotDesignerSave;
+  public onAddAsSource = callbacks.onAddAsSource;
 
   leads = {
-    selected: this.leadsSelected,
+    selected: callbacks.leadsSelected,
   };
 
   contacts = {
-    selected: this.contactsSelected,
+    selected: callbacks.contactsSelected,
   };
 
   todo = {
-    selected: this.todoSelected,
+    selected: callbacks.todoSelected,
   };
 }
