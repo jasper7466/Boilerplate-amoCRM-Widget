@@ -87,7 +87,7 @@ export interface IWidget {
       promised?: boolean;
       load?: (template: template) => void;
     },
-    parameters?: {},
+    parameters?: {}
   ) => string | boolean | Promise<template>;
   /**
    * Метод оборачивает переданную ему разметку или шаблон в стандартную для виджетов оболочку (разметку)
@@ -105,7 +105,7 @@ export interface IWidget {
     },
     renderData?: {
       name: string;
-    },
+    }
   ) => any;
   get_settings(): IWidgetSettings;
   system(): ISystem;

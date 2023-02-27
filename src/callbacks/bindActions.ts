@@ -1,14 +1,15 @@
-import { bindAndSubscribeInboxHandlers } from './../utils/MessagesProcessing';
-import { IWidget } from '../types/IWidget';
+import { bindAndSubscribeInboxHandlers } from '../api/inbox-post-messages-handlers/index';
+import { IWidgetExtended } from '../interfaces/widget-extended.interface';
 import { onEvent } from '../utils/onEvent';
 import { renderModal } from '../utils/renderModal';
 
-const bindActions = function (this: IWidget) {
+const bindActions = function (this: IWidgetExtended) {
   console.log('bind actions');
   onEvent('click', `.side-panel__open-button.${this.params.widget_code}`, () =>
     renderModal.call(this)
   );
-  bindAndSubscribeInboxHandlers(this);
+
+  bindAndSubscribeInboxHandlers.call(this);
 };
 
 export { bindActions };

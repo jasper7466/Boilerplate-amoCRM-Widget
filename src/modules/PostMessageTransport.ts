@@ -1,8 +1,14 @@
 import { EventBus } from './EventBus';
-import { indexed } from '../types/common';
+import { Indexed } from '../types/common';
 import { isObject } from '../utils/isObject';
 
-export class PostMessageTransport<Actions> {
+export interface IPostMessage<T extends Indexed<any>> {
+  action: string;
+  backwardAction?: string;
+  payload: T;
+}
+
+export class PostMessageTransport {
   protected eventBus: EventBus;
 
   constructor(
@@ -14,7 +20,10 @@ export class PostMessageTransport<Actions> {
     window.addEventListener('message', this.messageHandler.bind(this));
   }
 
-  subscribe(action: string, callback: (payload: indexed<any>) => void): this {
+  subscribe<T extends Indexed<any>>(
+    action: string,
+    callback: (payload: IPostMessage<T>) => void
+  ): this {
     this.eventBus.subscribe(action, callback);
     return this;
   }
@@ -24,12 +33,16 @@ export class PostMessageTransport<Actions> {
     return this;
   }
 
-  postMessage<K extends keyof Actions>(
-    action: K,
-    payload: Actions[K]
-  ): this | never {
+  post<T extends Indexed<any>>({
+    action,
+    backwardAction,
+    payload,
+  }: IPostMessage<T>): this | never {
     const iFrame = this.getFrame();
-    iFrame.contentWindow?.postMessage({ action, payload }, this.targetOrigin);
+    iFrame.contentWindow?.postMessage(
+      { action, backwardAction, payload },
+      this.targetOrigin
+    );
     return this;
   }
 

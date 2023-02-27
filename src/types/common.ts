@@ -1,1 +1,1 @@
-export type indexed<T> = { [key: string]: T };
+export type Indexed<T> = { [key: string]: T };

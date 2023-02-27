@@ -1,11 +1,11 @@
 import { callbacks } from './../callbacks/index';
 import { IWidgetCallbacks } from '../types/IWidget';
-import { IWidget } from '../types/IWidget';
+import { IWidgetExtended } from '../interfaces/widget-extended.interface';
 
 export class WidgetCallbacks implements IWidgetCallbacks {
-  widget: IWidget;
+  widget: IWidgetExtended;
 
-  constructor(widget: IWidget) {
+  constructor(widget: IWidgetExtended) {
     this.widget = widget;
   }
 
