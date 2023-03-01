@@ -20,7 +20,7 @@ export class PostMessageTransport {
     window.addEventListener('message', this.messageHandler.bind(this));
   }
 
-  subscribe<T extends Indexed<any>>(
+  public subscribe<T extends Indexed<any>>(
     action: string,
     callback: (payload: IPostMessage<T>) => void
   ): this {
@@ -28,12 +28,12 @@ export class PostMessageTransport {
     return this;
   }
 
-  unsubscribe(action: string, callback: (payload: any) => void): this {
+  public unsubscribe(action: string, callback: (payload: any) => void): this {
     this.eventBus.unsubscribe(action, callback);
     return this;
   }
 
-  post<T extends Indexed<any>>({
+  public post<T extends Indexed<any>>({
     action,
     backwardAction,
     payload,
@@ -58,9 +58,9 @@ export class PostMessageTransport {
       return;
     }
 
-    const { action, payload } = event.data;
+    const payload = event.data as IPostMessage<any>;
 
-    this.eventBus.emit(action, payload);
+    this.eventBus.emit(payload.action, payload);
   }
 
   protected raiseError(errorMessage: string): never {

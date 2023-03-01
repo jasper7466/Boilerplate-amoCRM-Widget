@@ -13,12 +13,12 @@ interface IGetCrmContextResponse {
   cardId: number | false;
 }
 
-export function getCrmContextPostMessageHandler(
+export function getCrmContextMessageHandler(
   this: IWidgetExtended,
-  { backwardAction }: IPostMessage<any>
+  { action, backwardAction }: IPostMessage<any>
 ) {
   this.postMessageTransport.post<IGetCrmContextResponse>({
-    action: backwardAction || 'getCrmContextResponse',
+    action: backwardAction || action,
     payload: {
       settings: this.get_settings(),
       system: this.system(),

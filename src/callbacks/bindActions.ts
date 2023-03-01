@@ -1,4 +1,4 @@
-import { bindAndSubscribeInboxHandlers } from '../api/inbox-post-messages-handlers/index';
+import { bindAndSubscribeInboxHandlers } from '../api/index';
 import { IWidgetExtended } from '../interfaces/widget-extended.interface';
 import { onEvent } from '../utils/onEvent';
 import { renderModal } from '../utils/renderModal';
