@@ -1,7 +1,7 @@
-import { IWidget } from '../types/IWidget';
+import { IWidgetExtended } from './../interfaces/widget-extended.interface';
 import { renderInPanel } from '../utils/renderInPanel';
 
-const render = function (this: IWidget) {
+const render = function (this: IWidgetExtended) {
   console.log('render');
 
   if (

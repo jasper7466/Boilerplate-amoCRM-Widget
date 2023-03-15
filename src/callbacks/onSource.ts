@@ -1,6 +1,6 @@
-import { IWidget } from '../types/IWidget';
+import { IWidgetExtended } from './../interfaces/widget-extended.interface';
 
-const onSource = function (this: IWidget) {
+const onSource = function (this: IWidgetExtended) {
   console.log('on source');
 };
 

@@ -1,6 +1,6 @@
-import { IWidget } from '../types/IWidget';
+import { IWidgetExtended } from './../interfaces/widget-extended.interface';
 
-const init = function (this: IWidget) {
+const init = function (this: IWidgetExtended) {
   console.log('init');
 };
 

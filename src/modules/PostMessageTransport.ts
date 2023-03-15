@@ -14,7 +14,7 @@ export class PostMessageTransport {
   constructor(
     protected iFrameSelector: string,
     protected targetOrigin: string = '*',
-    protected isStrictMode = false
+    protected isStrictMode = false,
   ) {
     this.eventBus = new EventBus(isStrictMode);
     window.addEventListener('message', this.messageHandler.bind(this));
@@ -22,7 +22,7 @@ export class PostMessageTransport {
 
   public subscribe<T extends Indexed<any>>(
     action: string,
-    callback: (payload: IPostMessage<T>) => void
+    callback: (payload: IPostMessage<T>) => void,
   ): this {
     this.eventBus.subscribe(action, callback);
     return this;
@@ -41,7 +41,7 @@ export class PostMessageTransport {
     const iFrame = this.getFrame();
     iFrame.contentWindow?.postMessage(
       { action, backwardAction, payload },
-      this.targetOrigin
+      this.targetOrigin,
     );
     return this;
   }
@@ -65,13 +65,13 @@ export class PostMessageTransport {
 
   protected raiseError(errorMessage: string): never {
     throw new Error(
-      `${this.constructor.name}, id: "${this.iFrameSelector}": ${errorMessage}`
+      `${this.constructor.name}, id: "${this.iFrameSelector}": ${errorMessage}`,
     );
   }
 
   protected getFrame(): HTMLIFrameElement | never {
     const iFrame = document.querySelector(
-      this.iFrameSelector
+      this.iFrameSelector,
     ) as HTMLIFrameElement;
 
     if (!iFrame) {

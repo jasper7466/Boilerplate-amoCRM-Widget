@@ -17,6 +17,6 @@ export const renderSettings = function (this: IWidget): void {
         .find('.widget_settings_block')
         .first()
         .append(html);
-    }
+    },
   );
 };

@@ -1,6 +1,6 @@
-import { IWidget } from '../types/IWidget';
+import { IWidgetExtended } from './../interfaces/widget-extended.interface';
 
-const leadsSelected = function (this: IWidget) {
+const leadsSelected = function (this: IWidgetExtended) {
   console.log('leads selected');
 };
 

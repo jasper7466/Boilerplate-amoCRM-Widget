@@ -1,6 +1,6 @@
-import { IWidget } from '../types/IWidget';
+import { IWidgetExtended } from './../interfaces/widget-extended.interface';
 
-const todoSelected = function (this: IWidget) {
+const todoSelected = function (this: IWidgetExtended) {
   console.log('todo selected');
 };
 

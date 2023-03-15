@@ -14,8 +14,9 @@ const Widget = function (this: IWidgetExtended) {
   this.callbacks = new WidgetCallbacks(this);
   this.postMessageTransport = new PostMessageTransport(
     '#main-iframe',
-    config.iframeURL
+    config.iframeURL,
   );
+  this.xhrList = {};
 };
 
 export = Widget;

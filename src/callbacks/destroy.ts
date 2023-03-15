@@ -1,6 +1,6 @@
-import { IWidget } from '../types/IWidget';
+import { IWidgetExtended } from './../interfaces/widget-extended.interface';
 
-const destroy = function (this: IWidget) {
+const destroy = function (this: IWidgetExtended) {
   console.log('destroy');
 };
 

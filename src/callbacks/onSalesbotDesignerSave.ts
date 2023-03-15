@@ -1,7 +1,7 @@
-import { IWidget } from '../types/IWidget';
+import { IWidgetExtended } from './../interfaces/widget-extended.interface';
 
 const onSalesbotDesignerSave = function (
-  this: IWidget,
+  this: IWidgetExtended,
   handlerCode: any,
   params: any,
 ) {

@@ -1,6 +1,6 @@
-import { IWidget } from '../types/IWidget';
+import { IWidgetExtended } from './../interfaces/widget-extended.interface';
 
-const dpSettings = function (this: IWidget) {
+const dpSettings = function (this: IWidgetExtended) {
   console.log('digital pipeline settings');
 };
 
