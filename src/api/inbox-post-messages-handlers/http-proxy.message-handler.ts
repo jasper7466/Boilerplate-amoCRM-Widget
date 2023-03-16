@@ -1,4 +1,4 @@
-import { Indexed, Writeable } from './../../types/common';
+import { Indexed } from './../../types/common';
 import { IWidgetExtended } from '../../interfaces/widget-extended.interface';
 import { IPostMessage } from '../../modules/PostMessageTransport';
 
@@ -20,30 +20,54 @@ interface IPostMessageXhrConfig {
   headers: Indexed<string>;
   eventsToTrack: Array<keyof XMLHttpRequestEventMap>;
   responseType: XMLHttpRequestResponseType;
-  body: string;
+  bodyString: string;
 }
 
-interface IPostMessageXhrEvent
-  extends Writeable<
-    Partial<Pick<ProgressEvent, 'lengthComputable' | 'loaded' | 'total'>>
-  > {
-  type: keyof XMLHttpRequestEventMap | 'unexpected-error';
+interface IXhrState {
+  readyState: READY_STATE;
+  progress: {
+    lengthComputable: boolean;
+    loaded: number;
+    total: number;
+  };
   status?: number;
-  readyState?: READY_STATE;
-  description?: string;
-  data?: string;
+  statusText?: string;
   responseUrl?: string;
+  headersString?: string;
+  response?: string;
+  responseText?: string;
+}
+
+interface IAdditionalActions {
+  abort?: boolean;
+}
+
+interface IPostMessageXhrEvent {
+  type: keyof XMLHttpRequestEventMap | 'unexpected-error';
+  description?: string;
+  state: Partial<IXhrState>;
 }
 
 export async function httpProxyMessageHandler(
   this: IWidgetExtended,
-  { payload, action, backwardAction }: IPostMessage<IPostMessageXhrConfig>,
+  {
+    payload,
+    action,
+    backwardAction,
+  }: IPostMessage<IPostMessageXhrConfig & IAdditionalActions>,
 ) {
-  console.log(payload);
-
-  const xhr = new XMLHttpRequest();
+  const sessionGuid = backwardAction || action;
 
   try {
+    if (payload.abort) {
+      this.xhrList[sessionGuid].abort();
+      delete this.xhrList[sessionGuid];
+      return;
+    }
+
+    const xhr = new XMLHttpRequest();
+    this.xhrList[sessionGuid] = xhr;
+
     xhr.open(payload.method, payload.url, true, payload.user, payload.password);
     xhr.timeout = payload.timeout;
     xhr.withCredentials = payload.withCredentials;
@@ -61,24 +85,47 @@ export async function httpProxyMessageHandler(
       xhr.addEventListener(eventType, (event) => {
         let payload: IPostMessageXhrEvent = {
           type: event.type as IPostMessageXhrEvent['type'],
-          readyState: xhr.readyState,
-          status: xhr.status,
+          state: {},
         };
 
         if (event instanceof ProgressEvent) {
-          payload.lengthComputable = event.lengthComputable;
-          (payload.loaded = event.loaded), (payload.total = event.total);
+          payload.state.progress = {
+            lengthComputable: event.lengthComputable,
+            loaded: event.loaded,
+            total: event.total,
+          };
+        }
+
+        if (event.type === 'readystatechange') {
+          payload.state.readyState = xhr.readyState;
+          payload.state.status = xhr.status;
+          payload.state.statusText = xhr.statusText;
+          payload.state.responseUrl = xhr.responseURL;
+
+          if (xhr.readyState === xhr.HEADERS_RECEIVED) {
+            payload.state.headersString = xhr.getAllResponseHeaders();
+          }
+
+          if (xhr.readyState === xhr.DONE) {
+            payload.state.response = xhr.response;
+          }
         }
 
         this.postMessageTransport.post<IPostMessageXhrEvent>({
           action: backwardAction || action,
           payload,
         });
+
+        if (xhr.readyState === xhr.DONE) {
+          delete this.xhrList[sessionGuid];
+        }
       });
     }
 
-    xhr.send(JSON.parse(payload.body));
+    xhr.send(JSON.parse(payload.bodyString));
   } catch (error) {
+    delete this.xhrList[sessionGuid];
+
     if (!(error instanceof Error)) {
       throw error;
     }
@@ -87,6 +134,7 @@ export async function httpProxyMessageHandler(
       payload: {
         type: 'unexpected-error',
         description: `${error.name}: ${error.message}`,
+        state: {},
       },
     });
   }
