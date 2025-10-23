@@ -48,7 +48,7 @@
     "@types/jquery": "^3.5.14",
     "concurrently": "^7.3.0",
     "cors": "^2.8.5",
-    "express": "^4.21.0",
+    "express": "^4.21.2",
     "filehound": "^1.17.6",
     "fs-extra": "^10.1.0",
     "npm-watch": "^0.11.0",
